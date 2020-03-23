@@ -1,0 +1,22 @@
+SELECT
+SubscriberKey,
+
+/*-----CASE 1 - ADDING POINTS-----*/
+    CASE
+        WHEN booleanField = 'True' AND (textField1 NOT LIKE '%some text%' OR textField1 IS NULL)
+            THEN ISNULL(finalField1,0) + 10
+            
+            ELSE finalField1
+    
+    END AS finalField1,
+    
+/*-----CASE 2 - ADDING TEXT-----*/
+    CASE
+        WHEN booleanField = 'True' AND (textField1 NOT LIKE '%some text%' OR textField1 IS NULL)
+            THEN CONCAT(finalField2,'some text')
+            
+            ELSE finalField2
+    
+    END AS finalField2
+
+FROM table
