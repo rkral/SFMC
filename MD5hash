@@ -1,0 +1,10 @@
+SELECT
+email,
+
+    CASE
+        WHEN hashed_email IS NULL
+            THEN CONVERT(VARCHAR(32),HashBytes('MD5',email),2)
+            ELSE hashed_email
+    END AS hashed_email
+
+FROM table
