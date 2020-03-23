@@ -1,0 +1,8 @@
+SELECT
+
+COUNT(couponCode) AS totalCount,
+SUM(CASE WHEN assignedTo IS NOT NULL THEN 1 ELSE 0 END) AS usedCount,
+SUM(CASE WHEN assignedTo IS NULL THEN 1 ELSE 0 END) AS unusedCount,
+ROUND(CAST((CAST(SUM(CASE WHEN assignedTo IS NULL THEN 1 ELSE 0 END) AS FLOAT)/CAST(COUNT(couponCode) AS FLOAT))*100 AS FLOAT),0) AS availablePercentage
+
+FROM table
