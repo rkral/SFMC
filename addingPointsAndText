@@ -1,3 +1,4 @@
+/*-----SQL 1-----*/
 SELECT
 SubscriberKey,
 
@@ -20,3 +21,32 @@ SubscriberKey,
     END AS finalField2
 
 FROM table
+
+
+
+/*-----SQL 2-----*/
+SELECT
+A.SubscriberKey,
+
+/*-----CASE 1-----*/
+    CASE
+        WHEN A.SubscriberKey = B.SubscriberKey AND B.someField LIKE '%some text%' AND B.someBoolean = 'false'
+            THEN ISNULL(finalField1,0) + 2
+            
+            ELSE finalField1
+    
+    END AS finalField1,
+    
+/*-----CASE 2-----*/
+        CASE
+        WHEN A.SubscriberKey = B.SubscriberKey AND B.someField LIKE '%some text%' AND B.someBoolean = 'false'
+            THEN ISNULL(finalField2,0) + 10
+            
+            ELSE finalField2
+    
+    END AS finalField2
+ 
+FROM tableA AS A
+
+LEFT JOIN tableB AS B
+ON A.SubscriberKey = B.SubscriberKey
